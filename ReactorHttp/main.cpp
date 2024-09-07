@@ -15,7 +15,6 @@ int main(int argc, char *argv[]) {
 #else
     unsigned short port = 8080;
     chdir("../../html_test");
-    // chdir("../../html");
 #endif
     // 启动服务器
     TcpServer *server = new TcpServer(port, 4);
