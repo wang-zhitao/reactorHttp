@@ -15,6 +15,7 @@ include_directories(
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib)
 
 add_compile_definitions(
+                        # DEBUG
                         # MSG_SEND_AUTO
                         # EPOLLET_ENABLE (存在BUG)
                         EPOLLLT_ENABLE

@@ -1,6 +1,5 @@
 #include "TcpConnection.h"
 #include "HttpRequest.h"
-#include "Log.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,7 +8,6 @@ int TcpConnection::processRead(void *arg) {
     // 接收数据
     int socket = conn->m_channel->getSocket();
     int count = conn->m_readBuf->socketRead(socket);
-    // printf("接收到的http请求数据: %s", conn->m_readBuf->data());
     if (count > 0) {
         // 接收到了 http 请求, 解析http请求
 #ifdef MSG_SEND_AUTO
@@ -81,5 +79,4 @@ TcpConnection::~TcpConnection() {
         delete m_response;
         m_evLoop->freeChannel(m_channel);
     }
-    Debug("连接断开, 释放资源, gameover, connName: %s", m_name.c_str());
 }
