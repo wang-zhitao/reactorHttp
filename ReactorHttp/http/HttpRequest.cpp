@@ -1,6 +1,5 @@
 // #define _GNU_SOURCE
 #include "HttpRequest.h"
-#include "Log.h"
 #include "TcpConnection.h"
 #include <algorithm>
 #include <assert.h>
