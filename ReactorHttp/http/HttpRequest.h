@@ -61,6 +61,8 @@ class HttpRequest {
     inline PrecessState getState() { return m_curState; }
     inline void setState(PrecessState state) { m_curState = state; }
 
+    inline void send_100_continue(int client_fd);
+
   private:
     char *splitRequestLine(const char *start, const char *end, const char *sub,
                            function<void(string)> callback);

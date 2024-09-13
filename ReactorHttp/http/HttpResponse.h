@@ -1,13 +1,13 @@
 #pragma once
 #include "Buffer.h"
-#include <map>
 #include <functional>
+#include <map>
 using namespace std;
 
 // 定义状态码枚举
-enum class StatusCode
-{
+enum class StatusCode {
     Unknown,
+    CONTINUE = 100,
     OK = 200,
     MovedPermanently = 301,
     MovedTemporarily = 302,
@@ -16,25 +16,19 @@ enum class StatusCode
 };
 
 // 定义结构体
-class HttpResponse
-{
-public:
+class HttpResponse {
+  public:
     HttpResponse();
     ~HttpResponse();
-    function<void(const string, struct Buffer*, int)> sendDataFunc;
+    function<void(const string, struct Buffer *, int)> sendDataFunc;
     // 添加响应头
     void addHeader(const string key, const string value);
     // 组织http响应数据
-    void prepareMsg(Buffer* sendBuf, int socket);
-    inline void setFileName(string name)
-    {
-        m_fileName = name;
-    }
-    inline void setStatusCode(StatusCode code)
-    {
-        m_statusCode = code;
-    }
-private:
+    void prepareMsg(Buffer *sendBuf, int socket);
+    inline void setFileName(string name) { m_fileName = name; }
+    inline void setStatusCode(StatusCode code) { m_statusCode = code; }
+
+  private:
     // 状态行: 状态码, 状态描述
     StatusCode m_statusCode;
     string m_fileName;
@@ -49,4 +43,3 @@ private:
         {404, "NotFound"},
     };
 };
-

@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
+#include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -145,6 +146,7 @@ bool HttpRequest::parseHttpRequest(Buffer *readBuf, HttpResponse *response,
             flag = parseRequestHeader(readBuf);
             break;
         case PrecessState::ParseReqBody:
+            send_100_continue(socket);
             flag = parseRequestBody(readBuf);
             break;
         default:
@@ -490,4 +492,9 @@ bool HttpRequest::processGetCgi() {
         return true;
     }
     return false;
+}
+
+void HttpRequest::send_100_continue(int client_fd) {
+    std::string response = "HTTP/1.1 100 Continue\r\n\r\n";
+    send(client_fd, response.c_str(), response.length(), 0);
 }
