@@ -1,5 +1,4 @@
 #include "HttpResponse.h"
-#include "Log.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

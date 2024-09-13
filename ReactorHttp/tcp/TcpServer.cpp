@@ -1,5 +1,4 @@
 #include "TcpServer.h"
-#include "Log.h"
 #include "TcpConnection.h"
 #include <arpa/inet.h>
 #include <fcntl.h>
